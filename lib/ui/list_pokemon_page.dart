@@ -41,21 +41,18 @@ class _ListPokemonPageState extends State<ListPokemonPage> {
       body: BlocBuilder<PokemonBloc, PokemonState>(
         builder: (context, state) {
           if (state is HasData) {
-            if (state.result.isEmpty) {
-              return Center(
-                child: Text('No Pokemon'),
-              );
-            }
-            return ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return index >= state.result.length
-                    ? BottomLoader()
-                    : PokemonWidget(pokemon: state.result[index]);
-              },
-              itemCount: state.hasReachedMax
-                  ? state.result.length
-                  : state.result.length + 1,
-              controller: _scrollController,
+            return Center(
+              child: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return index >= state.result.length
+                      ? BottomLoader()
+                      : PokemonWidget(pokemon: state.result[index]);
+                },
+                itemCount: state.hasReachedMax
+                    ? state.result.length
+                    : state.result.length + 1,
+                controller: _scrollController,
+              ),
             );
           } else if (state is Error) {
             return Center(child: Text(state.message));
@@ -95,6 +92,40 @@ class PokemonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(pokemon.name);
+    return Container(
+      margin: EdgeInsets.all(5),
+      child: InkWell(
+        child: Card(
+          elevation: 2.0,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5))),
+          margin: EdgeInsets.all(10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              // image
+              Container(
+                width: Sizes.width(context) / 3,
+                height: Sizes.width(context) / 2.5,
+                color: Colors.red,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(Sizes.dp10(context)),
+                  child: Text(
+                    pokemon.name,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: Sizes.dp16(context),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -35,12 +35,11 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
           return;
         }
         if (currentState is HasData) {
-          final response = await apiService.pokemonList(currentState.result.length, 15);
-          var total = currentState.result + response;
+          final response = await apiService.pokemonList(currentState.result.length, 20);
           yield response.isEmpty
               ? currentState.copyWith(hasReachedMax: true)
               : HasData(
-            result: total,
+            result: currentState.result + response,
             hasReachedMax: false,
           );
         }
