@@ -40,13 +40,24 @@ class _ListPokemonPageState extends State<ListPokemonPage> {
       appBar: AppBar(),
       body: BlocBuilder<PokemonBloc, PokemonState>(
         builder: (context, state) {
-          if (state is HasData) {
+          if (state is PokemonHasData) {
             return Center(
               child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  return index >= state.result.length
-                      ? BottomLoader()
-                      : PokemonWidget(pokemon: state.result[index]);
+                  if (index >= state.result.length) {
+                    return LoadingIndicator();
+                  } else {
+                    return BlocProvider(
+                      create: (context) {
+                        return PokemonBloc(apiService: ApiService());
+                      },
+                      child: PokemonWidget(
+                        pokemon: state.result[index],
+                        onTap: () => print(
+                            'Pokemon Detail Url ---> ${state.result[index].url} '),
+                      ),
+                    );
+                  }
                 },
                 itemCount: state.hasReachedMax
                     ? state.result.length
@@ -61,70 +72,9 @@ class _ListPokemonPageState extends State<ListPokemonPage> {
           } else if (state is RequestTimeout) {
             return Center(child: Text(state.message));
           } else {
-            return Center(child: CircularProgressIndicator());
+            return LoadingIndicator();
           }
         },
-      ),
-    );
-  }
-}
-
-class BottomLoader extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Center(
-        child: SizedBox(
-          width: Sizes.dp30(context),
-          height: Sizes.dp30(context),
-          child: CircularProgressIndicator(strokeWidth: 1.5),
-        ),
-      ),
-    );
-  }
-}
-
-class PokemonWidget extends StatelessWidget {
-
-  final Pokemon pokemon;
-  const PokemonWidget({Key key, @required this.pokemon}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(5),
-      child: InkWell(
-        child: Card(
-          elevation: 2.0,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(5))),
-          margin: EdgeInsets.all(10),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // image
-              Container(
-                width: Sizes.width(context) / 3,
-                height: Sizes.width(context) / 2.5,
-                color: Colors.red,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(Sizes.dp10(context)),
-                  child: Text(
-                    pokemon.name,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: Sizes.dp16(context),
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
       ),
     );
   }

@@ -1,18 +1,19 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
-import 'package:rxdart/rxdart.dart';
+
 import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:rxdart/rxdart.dart';
 
 class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
   final ApiService apiService;
 
   PokemonBloc({@required this.apiService});
 
-
   @override
-  Stream<PokemonState> transformEvents(Stream<PokemonEvent> events, Stream<PokemonState> Function(PokemonEvent p1) next) {
+  Stream<PokemonState> transformEvents(Stream<PokemonEvent> events,
+      Stream<PokemonState> Function(PokemonEvent p1) next) {
     return super.transformEvents(
       events.debounceTime(
         Duration(milliseconds: 500),
@@ -31,17 +32,18 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
       try {
         if (currentState is InitialPokemonState) {
           final response = await apiService.pokemonList(10, 15);
-          yield HasData(result: response, hasReachedMax: false);
+          yield PokemonHasData(result: response, hasReachedMax: false);
           return;
         }
-        if (currentState is HasData) {
-          final response = await apiService.pokemonList(currentState.result.length, 20);
+        if (currentState is PokemonHasData) {
+          final response =
+              await apiService.pokemonList(currentState.result.length, 20);
           yield response.isEmpty
               ? currentState.copyWith(hasReachedMax: true)
-              : HasData(
-            result: currentState.result + response,
-            hasReachedMax: false,
-          );
+              : PokemonHasData(
+                  result: currentState.result + response,
+                  hasReachedMax: false,
+                );
         }
       } on IOException catch (_) {
         yield NoInternetConnection('No Internet Connection');
@@ -50,9 +52,24 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
       } catch (e) {
         yield Error(e.toString());
       }
+    } else if (event is LoadPokemonDetail) {
+      yield* _mapLoadPokemonDetail('https://pokeapi.co/api/v2/pokemon/16/');
     }
   }
 
   bool _hasReachedMax(PokemonState state) =>
-      state is HasData && state.hasReachedMax;
+      state is PokemonHasData && state.hasReachedMax;
+
+  Stream<PokemonState> _mapLoadPokemonDetail(String url) async* {
+    try {
+      var response = await apiService.pokemonDetail(url);
+      yield PokemonDetailHasData(response);
+    } on IOException catch (_) {
+      yield NoInternetConnection('No Internet Connection');
+    } on TimeoutException catch (_) {
+      yield RequestTimeout('No Internet Connection');
+    } catch (e) {
+      yield Error(e.toString());
+    }
+  }
 }

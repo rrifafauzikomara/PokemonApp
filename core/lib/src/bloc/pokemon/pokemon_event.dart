@@ -8,3 +8,5 @@ abstract class PokemonEvent extends Equatable {
 }
 
 class LoadPokemon extends PokemonEvent {}
+
+class LoadPokemonDetail extends PokemonEvent {}

@@ -10,19 +10,20 @@ abstract class PokemonState extends Equatable {
 
 class InitialPokemonState extends PokemonState {}
 
-class HasData extends PokemonState {
+class PokemonHasData extends PokemonState {
   final List<Pokemon> result;
   final bool hasReachedMax;
 
-  HasData({this.result, this.hasReachedMax});
+  PokemonHasData({this.result, this.hasReachedMax});
 
-  HasData copyWith({
+  PokemonHasData copyWith({
     List<Pokemon> result,
     bool hasReachedMax,
+    PokemonDetail pokemonDetail,
   }) {
-    return HasData(
+    return PokemonHasData(
       result: result ?? this.result,
-      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax
     );
   }
 
@@ -68,4 +69,13 @@ class Error extends PokemonState {
 
   @override
   String toString() => 'Error --> message: $message';
+}
+
+class PokemonDetailHasData extends PokemonState {
+  final PokemonDetail response;
+
+  PokemonDetailHasData([this.response]);
+
+  @override
+  List<Object> get props => [response];
 }
