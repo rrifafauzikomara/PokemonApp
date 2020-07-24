@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) {
-          return PokemonBloc(ApiService());
+          return PokemonBloc(apiService: ApiService());
         },
         child: ListPokemonPage(),
       ),

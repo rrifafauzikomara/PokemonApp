@@ -10,27 +10,28 @@ abstract class PokemonState extends Equatable {
 
 class InitialPokemonState extends PokemonState {}
 
-class Loading extends PokemonState {}
-
 class HasData extends PokemonState {
-  final PokemonResponse response;
+  final List<Pokemon> result;
+  final bool hasReachedMax;
 
-  HasData([this.response]);
+  HasData({this.result, this.hasReachedMax});
+
+  HasData copyWith({
+    List<Pokemon> result,
+    bool hasReachedMax,
+  }) {
+    return HasData(
+      result: result ?? this.result,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+    );
+  }
 
   @override
-  List<Object> get props => [response];
-}
-
-class NoData extends PokemonState {
-  final String message;
-
-  NoData(this.message);
+  List<Object> get props => [result, hasReachedMax];
 
   @override
-  List<Object> get props => [message];
-
-  @override
-  String toString() => 'No Data --> message: $message';
+  String toString() =>
+      'Has Data --> { data: ${result.length}, hasReachedMax: $hasReachedMax }';
 }
 
 class NoInternetConnection extends PokemonState {
