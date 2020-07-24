@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,7 @@ class _PokemonWidgetState extends State<PokemonWidget> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<PokemonBloc>(context).add(LoadPokemonDetail());
+    BlocProvider.of<PokemonBloc>(context).add(LoadPokemonDetail(url: widget.pokemon.url));
   }
 
   @override
@@ -41,7 +42,11 @@ class _PokemonWidgetState extends State<PokemonWidget> {
                 child: BlocBuilder<PokemonBloc, PokemonState>(
                   builder: (context, state) {
                     if (state is PokemonDetailHasData) {
-                      return Image.network(state.response.sprites.frontDefault);
+                      return CachedNetworkImage(
+                        imageUrl: state.response.sprites.frontDefault,
+                        placeholder: (context, url) => LoadingIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      );
                     } else if (state is Error) {
                       return Center(child: Text(state.message));
                     } else if (state is NoInternetConnection) {

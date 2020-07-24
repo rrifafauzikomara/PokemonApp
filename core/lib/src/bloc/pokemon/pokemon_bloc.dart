@@ -53,7 +53,7 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
         yield Error(e.toString());
       }
     } else if (event is LoadPokemonDetail) {
-      yield* _mapLoadPokemonDetail('https://pokeapi.co/api/v2/pokemon/16/');
+      yield* _mapLoadPokemonDetail(event.url);
     }
   }
 
