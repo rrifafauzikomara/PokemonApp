@@ -54,9 +54,7 @@ You can do self-study about it in [here](https://medium.com/flutter-community/ma
 * [Http](https://pub.dev/packages/http) - A type-safe HTTP client.
 * [Modularization](https://medium.com/flutter-community/mastering-flutter-modularization-in-several-ways-f5bced19101a) - Separate functionality into independent, interchangeable modules.
 * [Integration Testing](https://flutter.dev/docs/cookbook/testing/integration/introduction) - Automating UI/Integration Tests.
-* [Codemagic](https://blog.codemagic.io/environments-in-flutter-with-codemagic-cicd/) - Handling DevOps CI/CD for pipeline and automatically build.
 * Handle State - (Loading, No Data, Has Data, No Internet Connection, Request Timeout, Error) using try - catch
-* [Build Release for Android](https://flutter.dev/docs/deployment/android) - Available on the [Play Store](https://play.google.com/store/apps/details?id=id.rifafauzi.movie)
 
 
 ## How to run the Test
