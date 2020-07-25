@@ -9,7 +9,12 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/rrifafauzikomara/pokemon_go)
 
 
-## 📸 Example iOS
+## Features
+*  List Pokemon with Pagination
+*  Detail Pokemon
+
+
+## 📸 Screenshot
 <pre>
 <img src="image/image1.png" width="200">     <img src="image/image2.png" width="200">
 </pre>
@@ -41,6 +46,17 @@ You can do self-study about it in [here](https://medium.com/flutter-community/ma
         │   ├── styles         # Custom style that will be used on each widget.
         │   └── utils          # Utility classes.
         └── widget             # Custom widget which can be used repeatedly.
+
+
+## Built With 🛠
+* [BLoC Pattern](https://bloclibrary.dev/) - Business logic component to separate the business logic with UI.
+* [Equatable](https://pub.dev/packages/equatable) - Being able to compare objects in `Dart` often involves having to override the `==` operator.
+* [Http](https://pub.dev/packages/http) - A type-safe HTTP client.
+* [Modularization](https://medium.com/flutter-community/mastering-flutter-modularization-in-several-ways-f5bced19101a) - Separate functionality into independent, interchangeable modules.
+* [Integration Testing](https://flutter.dev/docs/cookbook/testing/integration/introduction) - Automating UI/Integration Tests.
+* [Codemagic](https://blog.codemagic.io/environments-in-flutter-with-codemagic-cicd/) - Handling DevOps CI/CD for pipeline and automatically build.
+* Handle State - (Loading, No Data, Has Data, No Internet Connection, Request Timeout, Error) using try - catch
+* [Build Release for Android](https://flutter.dev/docs/deployment/android) - Available on the [Play Store](https://play.google.com/store/apps/details?id=id.rifafauzi.movie)
 
 
 ## How to run the Test
