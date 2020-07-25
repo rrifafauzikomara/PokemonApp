@@ -3,6 +3,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/rrifafauzikomara/pokemon_go?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/rrifafauzikomara/pokemon_go?style=social)
 
+[![Codemagic build status](https://api.codemagic.io/apps/5f1c665b0aa9770017bc734e/5f1c665b0aa9770017bc734d/status_badge.svg)](https://codemagic.io/apps/5f1c665b0aa9770017bc734e/5f1c665b0aa9770017bc734d/latest_build)
 [![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![platform](https://img.shields.io/badge/platform-Flutter-blue.svg)](https://flutter.dev/)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/rrifafauzikomara/pokemon_go)
@@ -54,6 +55,7 @@ You can do self-study about it in [here](https://medium.com/flutter-community/ma
 * [Modularization](https://medium.com/flutter-community/mastering-flutter-modularization-in-several-ways-f5bced19101a) - Separate functionality into independent, interchangeable modules.
 * [Integration Testing](https://flutter.dev/docs/cookbook/testing/integration/introduction) - Automating UI/Integration Tests.
 * Handle State - (Loading, No Data, Has Data, No Internet Connection, Request Timeout, Error) using try - catch
+* [Codemagic](https://blog.codemagic.io/environments-in-flutter-with-codemagic-cicd/) - Handling DevOps CI/CD (Automated test) for pipeline and automatically build.
 
 
 ## How to run the Test
