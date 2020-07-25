@@ -29,6 +29,7 @@ class _DetailPokemonPageState extends State<DetailPokemonPage> {
       appBar: AppBar(
         elevation: 0,
         title: Text(widget.namePokemon),
+        centerTitle: true,
       ),
       body: BlocBuilder<PokemonBloc, PokemonState>(
         builder: (context, state) {

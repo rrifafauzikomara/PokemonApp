@@ -3,7 +3,6 @@
 ![GitHub forks](https://img.shields.io/github/forks/rrifafauzikomara/pokemon_go?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/rrifafauzikomara/pokemon_go?style=social)
 
-[![Codemagic build status](https://api.codemagic.io/apps/5ec63ade43c9304d454e75e7/5ec64f3243c9304d454e7682/status_badge.svg)](https://codemagic.io/apps/5ec63ade43c9304d454e75e7/5ec64f3243c9304d454e7682/latest_build)
 [![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![platform](https://img.shields.io/badge/platform-Flutter-blue.svg)](https://flutter.dev/)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/rrifafauzikomara/pokemon_go)

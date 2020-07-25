@@ -40,6 +40,7 @@ class _ListPokemonPageState extends State<ListPokemonPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        centerTitle: true,
         title: Text('Pokemon App'),
       ),
       body: BlocBuilder<PokemonBloc, PokemonState>(
