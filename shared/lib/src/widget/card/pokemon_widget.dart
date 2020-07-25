@@ -18,7 +18,8 @@ class _PokemonWidgetState extends State<PokemonWidget> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<PokemonBloc>(context).add(LoadPokemonDetail(url: widget.pokemon.url));
+    BlocProvider.of<PokemonBloc>(context)
+        .add(LoadPokemonDetail(url: widget.pokemon.url));
   }
 
   @override
@@ -33,7 +34,7 @@ class _PokemonWidgetState extends State<PokemonWidget> {
               borderRadius: BorderRadius.all(Radius.circular(5))),
           margin: EdgeInsets.all(10),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               // image
               Container(
@@ -64,6 +65,7 @@ class _PokemonWidgetState extends State<PokemonWidget> {
                   padding: EdgeInsets.all(Sizes.dp10(context)),
                   child: Text(
                     widget.pokemon.name,
+                    textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,

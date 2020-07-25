@@ -67,7 +67,7 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
     } on IOException catch (_) {
       yield NoInternetConnection('No Internet Connection');
     } on TimeoutException catch (_) {
-      yield RequestTimeout('No Internet Connection');
+      yield RequestTimeout('Request Timeout');
     } catch (e) {
       yield Error(e.toString());
     }

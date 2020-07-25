@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pokemongo/ui/detail_pokemon_page.dart';
 import 'package:shared/shared.dart';
 
 class ListPokemonPage extends StatefulWidget {
@@ -37,7 +38,9 @@ class _ListPokemonPageState extends State<ListPokemonPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Pokemon App'),
+      ),
       body: BlocBuilder<PokemonBloc, PokemonState>(
         builder: (context, state) {
           if (state is PokemonHasData) {
@@ -53,8 +56,28 @@ class _ListPokemonPageState extends State<ListPokemonPage> {
                       },
                       child: PokemonWidget(
                         pokemon: state.result[index],
-                        onTap: () => print(
-                            'Pokemon Detail Url ---> ${state.result[index].url} '),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              transitionDuration: Duration(milliseconds: 777),
+                              pageBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secondaryAnimation) {
+                                return BlocProvider(
+                                  create: (context) {
+                                    return PokemonBloc(
+                                        apiService: ApiService());
+                                  },
+                                  child: DetailPokemonPage(
+                                    namePokemon: state.result[index].name,
+                                    url: state.result[index].url,
+                                  ),
+                                );
+                              },
+                            ),
+                          );
+                        },
                       ),
                     );
                   }
