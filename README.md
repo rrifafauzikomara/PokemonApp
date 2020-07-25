@@ -43,6 +43,13 @@ You can do self-study about it in [here](https://medium.com/flutter-community/ma
         └── widget             # Custom widget which can be used repeatedly.
 
 
+## How to run the Test
+### Integration Testing
+```console
+flutter drive --target=test_driver/app.dart
+```
+
+
 ## Author
 
 * **R Rifa Fauzi Komara**

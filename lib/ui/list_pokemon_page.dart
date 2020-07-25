@@ -47,6 +47,7 @@ class _ListPokemonPageState extends State<ListPokemonPage> {
           if (state is PokemonHasData) {
             return Center(
               child: ListView.builder(
+                key: Key(KEY_LIST_VIEW_POKEMON),
                 itemBuilder: (BuildContext context, int index) {
                   if (index >= state.result.length) {
                     return LoadingIndicator();
