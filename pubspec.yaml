@@ -24,3 +24,15 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+  fonts:
+    - family: IBMPlexSans
+      fonts:
+        - asset: assets/fonts/IBMPlexSans-Regular.ttf
+        - asset: assets/fonts/IBMPlexSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/IBMPlexSans-Italic.ttf
+          style: italic
+        - asset: assets/fonts/IBMPlexSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/IBMPlexSans-SemiBold.ttf
+          weight: 600

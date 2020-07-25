@@ -1,67 +1,65 @@
 class PokemonDetail {
-  int baseExperience;
-  int height;
-  int id;
-  bool isDefault;
-  String locationAreaEncounters;
   String name;
-  int order;
-  Sprites sprites;
+  int height;
   int weight;
+  int baseExperience;
+  Sprites sprites;
+  List<Types> types;
 
   PokemonDetail(
-      {this.baseExperience,
+      {this.name,
       this.height,
-      this.id,
-      this.isDefault,
-      this.locationAreaEncounters,
-      this.name,
-      this.order,
+      this.weight,
+      this.baseExperience,
       this.sprites,
-      this.weight});
+      this.types});
 
   PokemonDetail.fromJson(Map<String, dynamic> json) {
-    baseExperience = json['base_experience'];
-    height = json['height'];
-    id = json['id'];
-    isDefault = json['is_default'];
-    locationAreaEncounters = json['location_area_encounters'];
     name = json['name'];
-    order = json['order'];
+    height = json['height'];
+    weight = json['weight'];
+    baseExperience = json['base_experience'];
     sprites =
         json['sprites'] != null ? new Sprites.fromJson(json['sprites']) : null;
-    weight = json['weight'];
+    if (json['types'] != null) {
+      types = new List<Types>();
+      json['types'].forEach((v) {
+        types.add(new Types.fromJson(v));
+      });
+    }
   }
 }
 
 class Sprites {
-  String backDefault;
-  String backFemale;
-  String backShiny;
-  String backShinyFemale;
   String frontDefault;
-  String frontFemale;
-  String frontShiny;
-  String frontShinyFemale;
 
-  Sprites(
-      {this.backDefault,
-      this.backFemale,
-      this.backShiny,
-      this.backShinyFemale,
-      this.frontDefault,
-      this.frontFemale,
-      this.frontShiny,
-      this.frontShinyFemale});
+  Sprites({this.frontDefault});
 
   Sprites.fromJson(Map<String, dynamic> json) {
-    backDefault = json['back_default'];
-    backFemale = json['back_female'];
-    backShiny = json['back_shiny'];
-    backShinyFemale = json['back_shiny_female'];
     frontDefault = json['front_default'];
-    frontFemale = json['front_female'];
-    frontShiny = json['front_shiny'];
-    frontShinyFemale = json['front_shiny_female'];
+  }
+}
+
+class Types {
+  int slot;
+  Type type;
+
+  Types({this.slot, this.type});
+
+  Types.fromJson(Map<String, dynamic> json) {
+    slot = json['slot'];
+    type = json['type'] != null ? new Type.fromJson(json['type']) : null;
+  }
+}
+
+class Type {
+  String name;
+  String url;
+
+  Type({this.name, this.url});
+
+  Type.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    url = json['url'];
   }
 }

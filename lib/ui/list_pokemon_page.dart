@@ -39,6 +39,7 @@ class _ListPokemonPageState extends State<ListPokemonPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text('Pokemon App'),
       ),
       body: BlocBuilder<PokemonBloc, PokemonState>(

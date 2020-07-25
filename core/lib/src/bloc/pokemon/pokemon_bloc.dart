@@ -37,7 +37,7 @@ class PokemonBloc extends Bloc<PokemonEvent, PokemonState> {
         }
         if (currentState is PokemonHasData) {
           final response =
-              await apiService.pokemonList(currentState.result.length, 20);
+              await apiService.pokemonList(currentState.result.length, 15);
           yield response.isEmpty
               ? currentState.copyWith(hasReachedMax: true)
               : PokemonHasData(

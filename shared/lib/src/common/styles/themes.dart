@@ -15,7 +15,7 @@ class Themes {
       textTheme: TextTheme(
         headline6: TextStyle(
           color: ColorPalettes.darkBG,
-          fontSize: 18.0,
+          fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
       ),

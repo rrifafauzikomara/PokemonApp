@@ -27,52 +27,124 @@ class _DetailPokemonPageState extends State<DetailPokemonPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(widget.namePokemon),
       ),
       body: BlocBuilder<PokemonBloc, PokemonState>(
         builder: (context, state) {
           if (state is PokemonDetailHasData) {
-            return SingleChildScrollView(
-              physics: ClampingScrollPhysics(),
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Container(
-                      width: Sizes.width(context),
-                      height: Sizes.width(context) / 2,
-                      child: CachedNetworkImage(
-                        imageUrl: state.response.sprites.frontDefault,
-                        placeholder: (context, url) => LoadingIndicator(),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+            return Stack(
+              overflow: Overflow.visible,
+              children: <Widget>[
+                CachedNetworkImage(
+                  width: Sizes.width(context),
+                  height: Sizes.width(context) / 2,
+                  fit: BoxFit.contain,
+                  imageUrl: state.response.sprites.frontDefault,
+                  placeholder: (context, url) => LoadingIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: Sizes.width(context) / 2),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: double.infinity,
+                    decoration: BoxDecoration(
+                      color: ColorPalettes.lightAccent,
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(Sizes.dp30(context)),
+                        topLeft: Radius.circular(Sizes.dp30(context)),
                       ),
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text(state.response.name),
-                    ),
-                    SizedBox(height: Sizes.dp10(context)),
-                    Column(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Detail :",
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(
+                                top: Sizes.dp20(context),
+                                bottom: Sizes.dp20(context)),
+                            child: Text(
+                              state.response.name,
+                              style: TextStyle(
+                                color: ColorPalettes.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: Sizes.dp22(context),
+                              ),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: Sizes.dp10(context)),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Height: ${state.response.height}, Width: ${state.response.weight}',
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Detail :",
+                              style: TextStyle(
+                                fontSize: Sizes.dp15(context),
+                                fontWeight: FontWeight.bold,
+                                color: ColorPalettes.white,
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
+                          SizedBox(height: Sizes.dp10(context)),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Weight : ${state.response.weight}, Height : ${state.response.height}',
+                              style: TextStyle(
+                                color: ColorPalettes.white,
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Experience : ${state.response.baseExperience} XP',
+                              style: TextStyle(
+                                color: ColorPalettes.white,
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: Sizes.dp10(context)),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Types :",
+                              style: TextStyle(
+                                fontSize: Sizes.dp15(context),
+                                fontWeight: FontWeight.bold,
+                                color: ColorPalettes.white,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: <Widget>[
+                              for (int i = 0;
+                                  i < state.response.types.length;
+                                  i++)
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Container(
+                                    margin: EdgeInsets.only(right: 10, top: 10),
+                                    padding: EdgeInsets.all(10),
+                                    child: Text(
+                                      state.response.types[i].type.name,
+                                      style: TextStyle(
+                                        color: ColorPalettes.white,
+                                      ),
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: ColorPalettes.red,
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             );
           } else if (state is Error) {
             return Center(child: Text(state.message));
