@@ -6,7 +6,7 @@
 [![Codemagic build status](https://api.codemagic.io/apps/5ec63ade43c9304d454e75e7/5ec64f3243c9304d454e7682/status_badge.svg)](https://codemagic.io/apps/5ec63ade43c9304d454e75e7/5ec64f3243c9304d454e7682/latest_build)
 [![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![platform](https://img.shields.io/badge/platform-Flutter-blue.svg)](https://flutter.dev/)
-[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/rrifafauzikomara/MovieCatalogue)
+[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/rrifafauzikomara/pokemon_go)
 
 
 ## 📸 Example iOS
@@ -19,7 +19,7 @@
 This is a normal flutter app. You should follow the instructions in the [official documentation](https://flutter.io/docs/get-started/install).
 This project uses **BLoC** (business logic component) to separate the business logic with UI itself.
 It's recommended to do self-study about it before jumping into the project [here](https://bloclibrary.dev/).
-And also on this project uses **Modularization** approach to separate each feature ([core](https://github.com/rrifafauzikomara/MovieCatalogue/tree/master/core), [shared](https://github.com/rrifafauzikomara/MovieCatalogue/tree/master/shared), [ui](https://github.com/rrifafauzikomara/MovieCatalogue/tree/master/lib/ui) modules).
+And also on this project uses **Modularization** approach to separate each feature ([core](https://github.com/rrifafauzikomara/pokemon_go/tree/master/core), [shared](https://github.com/rrifafauzikomara/pokemon_go/tree/master/shared), [ui](https://github.com/rrifafauzikomara/pokemon_go/tree/master/lib/ui) modules).
 You can do self-study about it in [here](https://medium.com/flutter-community/mastering-flutter-modularization-in-several-ways-f5bced19101a).
 
 
